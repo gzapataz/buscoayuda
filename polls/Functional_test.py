@@ -11,5 +11,5 @@ class FunctionalTest(TestCase):
         self.browser.quit()
 
     def test_title(self):
-        self.browser.get('http://localhost:8000')
+        self.browser.get('http://localhost:8000/polls')
         self.assertIn('Busco Ayuda', self.browser.title)

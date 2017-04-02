@@ -17,6 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'', include('polls.urls', namespace="images")),
+    url(r'^polls/', include('polls.urls', namespace="images")),
     url(r'^admin/', admin.site.urls),
 ]
