@@ -74,3 +74,29 @@ class FunctionalTest(TestCase):
 
         h2=self.browser.find_element(By.XPATH, '//h2[text()="Juan Daniel Arevalo"]')
         self.assertIn('Juan Daniel Arevalo', h2.text)
+
+    #Paso 4: Prueba para hacer login de un trabajador
+    #Presiona el boton login en la pagina principal Index.htm
+    #Abre una ventana modal donde pide login y password
+    #Presiona el boton login en la ventana modal
+    #Regresa a la pantalla principal Index y verifica que en la parte superior el campo logged_user tenga el nombre
+    #de la persona
+    def test_login(self):
+        self.browser.get('http://localhost:8000')
+        link = self.browser.find_element_by_id('id_login')
+        link.click()
+
+        log_user = self.browser.find_element_by_id('id_username')
+        log_user.send_keys('juan645')
+
+        pwd_user = self.browser.find_element_by_id('id_password')
+        pwd_user.send_keys('clave123')
+
+        botonLogin = self.browser.find_element_by_id('id_login')
+        botonLogin.click()
+        self.browser.implicitly_wait(3)
+
+        logged_user = self.browser.find_element_by_id('logged_user')
+
+        self.assertIn('juan645', logged_user.text)
+
