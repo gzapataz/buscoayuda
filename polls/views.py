@@ -28,9 +28,10 @@ def index(request):
 
 
 def login(request):
-    username = request.POST.get('usrname', '')
-    password = request.POST.get('psw', '')
+    username = request.POST.get('login_usuario', '')
+    password = request.POST.get('login_password', '')
     user = auth.authenticate(username=username, password=password)
+
     if user is not None:
         auth.login(request, user)
         messages.success(request, "Bienvenido al sistema {}".format(username), extra_tags="alert-success")

@@ -30,15 +30,13 @@
 <input id="id_nombr"/>
 <ul class="nav navbar-nav navbar-right" style="padding-right: 20px">
     {% if user.is_authenticated %}
-
-            <li><a href="{% url 'principal:editar' idTrabajador=user.id %}" id="id_editar"><span class="glyphicon glyphicon-user"></span> Editar</a></li>
-    <li>
+        <li><a href="{% url 'principal:editar' idTrabajador=user.id %}" id="id_editar"><span class="glyphicon glyphicon-user"></span>{{ user.username }}</a></li>
+        <li>
             <a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
         </li>
     {% else %}
         <li><a href="#" id="id_register"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
         <li><a href="#" id="id_login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <!--li id="logged_user">juan645</li-->
     {% endif %}
 </ul>
 <div class="jumbotron" style="padding-left: 20px; height: 50%">
@@ -99,6 +97,7 @@
     </div>
 {% endif %}
 {% include "polls/registro.html" %}
+{% include "polls/login.html" %}
 <!--suppress JSUnresolvedFunction -->
 <script>
     $(document).ready(function () {
