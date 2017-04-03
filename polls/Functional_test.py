@@ -1,11 +1,18 @@
 from unittest import TestCase
 
+import sys
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.support.select import Select
+
 
 class FunctionalTest(TestCase):
 
+
+
     def setUp(self):
-        self.browser = webdriver.Safari()
+        self.browser = webdriver.Chrome('/usr/local/bin/chromedriver')
 
     def tearDown(self):
         self.browser.quit()
@@ -19,16 +26,25 @@ class FunctionalTest(TestCase):
         link = self.browser.find_element_by_id('id_register')
         link.click()
 
+        nombr = self.browser.find_element_by_id('id_nombr')
+        nombr.send_keys('Juan Daniel')
+
         nombre = self.browser.find_element_by_id('id_nombre')
         nombre.send_keys('Juan Daniel')
 
+
         apellidos = self.browser.find_element_by_id('id_apellidos')
-        nombre.send_keys('Arevalo')
+        apellidos.send_keys('Arevalo')
 
         experiencia = self.browser.find_element_by_id('id_aniosExperiencia')
         experiencia.send_keys('5')
 
-        self.browser.find_element_by_xpath("//select[@id='id_tiposDeServicio']/option[text()='Desarrollador Web']").click()
+        self.browser.implicitly_wait(3)
+
+        self.browser.find_element_by_xpath('//select[@id="id_tiposDeServicio"]/option[text()="Desarrollador"]').click()
+
+
+        self.browser.implicitly_wait(3)
         telefono = self.browser.find_element_by_id('id_telefono')
         telefono.send_keys('3173024578')
 
@@ -36,7 +52,7 @@ class FunctionalTest(TestCase):
         correo.send_keys('jd.patino1@uniandes.edu.co')
 
         imagen = self.browser.find_element_by_id('id_imagen')
-        imagen.send_keys('C:\Users\asistente\Desktop\developer.jpg')
+        imagen.send_keys('/Users/Gabriel/Downloads/Untitled.png')
 
         nombreUsuario = self.browser.find_element_by_id('id_username')
         nombreUsuario.send_keys('juan645')

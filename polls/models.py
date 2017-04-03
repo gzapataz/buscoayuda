@@ -43,12 +43,14 @@ class TrabajadorForm(ModelForm):
         widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cantidad de años de experiencia'}),
         label='Años De Experiencia'
     )
+
     tiposDeServicio = forms.ModelChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
         queryset=TiposDeServicio.objects.all(),
         empty_label='Seleccione el tipo de servicio que ofrecerá',
         label='Tipo De Servicio'
     )
+
     telefono = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Número telefónico'}),
         label='Teléfono'

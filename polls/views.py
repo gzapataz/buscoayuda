@@ -2,6 +2,7 @@
 import datetime
 
 import boto
+import sys
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core import serializers
@@ -56,7 +57,7 @@ def register(request):
         user.email = request.POST.get('correo')
         user.save()
 
-
+        print >> sys.stdout, request.FILES['imagen']
 
         nuevo_trabajador=Trabajador(nombre=request.POST['nombre'],
                                       apellidos=request.POST['apellidos'],
