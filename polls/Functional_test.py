@@ -12,10 +12,11 @@ class FunctionalTest(TestCase):
 
     def setUp(self):
         # GZ_var
-        # self.browser = webdriver.Chrome('/usr/local/bin/chromedriver')
+        self.browser = webdriver.Chrome('/usr/local/bin/chromedriver')
+        #self.browser = webdriver.Safari()
 
         # FB_var
-        self.browser = webdriver.Chrome()
+        #self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(2)
 
     def tearDown(self):
@@ -55,9 +56,9 @@ class FunctionalTest(TestCase):
 
         imagen = self.browser.find_element_by_id('id_imagen')
         # GZ_var
-        # imagen.send_keys('/Users/Gabriel/Downloads/Untitled.png')
+        imagen.send_keys('/Users/Gabriel/Downloads/Untitled.png')
         # FB_var
-        imagen.send_keys('C:\\Temporal\\perfil\\foto.jgp')
+        #imagen.send_keys('C:\\Temporal\\perfil\\foto.jgp')
 
         nombreUsuario = self.browser.find_element_by_id('id_username')
         nombreUsuario.send_keys('juan645')
@@ -118,6 +119,7 @@ class FunctionalTest(TestCase):
         # Logueo#########
         #
         self.browser.get('http://localhost:8000')
+
         link = self.browser.find_element_by_id('id_login')
         link.click()
 
@@ -129,23 +131,29 @@ class FunctionalTest(TestCase):
 
         botonLogin = self.browser.find_element_by_id('login_ingresar')
         botonLogin.click()
-        self.browser.implicitly_wait(3)
+
+        #Cierra el mansaje alerta de exito que oculta el link de modificacion
+        alertid = self.browser.find_element_by_id('alertid')
+        alertid.click()
+
 
         # Ir a edicion ################################################################################################
-        #
+
         linkEditar = self.browser.find_element_by_id('id_editar')
         linkEditar.click()
-        self.browser.implicitly_wait(3)
 
         # Escribir los nuevos datos ###################################################################################
         #
         nombre = self.browser.find_element_by_id('id_nombre')
+        nombre.clear()
         nombre.send_keys('Daniel Juan')
 
         apellidos = self.browser.find_element_by_id('id_apellidos')
+        apellidos.clear()
         apellidos.send_keys('Olavera')
 
         experiencia = self.browser.find_element_by_id('id_aniosExperiencia')
+        experiencia.clear()
         experiencia.send_keys('7')
 
         # Revisar que ese tipo de servicio se encuentre en la BD
@@ -153,23 +161,27 @@ class FunctionalTest(TestCase):
 
         self.browser.implicitly_wait(3)
         telefono = self.browser.find_element_by_id('id_telefono')
+        telefono.clear()
         telefono.send_keys('3002248822')
 
         correo = self.browser.find_element_by_id('id_correo')
+        correo.clear()
         correo.send_keys('dj.Olavera@uniandes.edu.co')
 
         imagen = self.browser.find_element_by_id('id_imagen')
+
         # GZ_var
         # imagen.send_keys('/Users/Gabriel/Downloads/Untitled.png')
         # FB_var
-        imagen.send_keys('C:\\Temporal\\perfil\\foto.jgp')
+        #imagen.send_keys('C:\\Temporal\\perfil\\foto.jgp')
 
         # El nombre de usuario no se puede modificar porque es pk (al parecer) en la BD
         # nombreUsuario = self.browser.find_element_by_id('id_username')
         # nombreUsuario.send_keys('daniel645')
 
-        clave = self.browser.find_element_by_id('id_password')
-        clave.send_keys('123clave')
+        #la forma en el servidor no maneja el cambio de clave por aqui
+        #clave = self.browser.find_element_by_id('id_password')
+        #clave.send_keys('123clave')
 
         botonGrabar = self.browser.find_element_by_id('id_grabar')
         botonGrabar.click()
@@ -178,6 +190,10 @@ class FunctionalTest(TestCase):
         #
         # Cargar el detalle
         self.browser.get('http://localhost:8000')
+
+        logout = self.browser.find_element_by_id('logoutId')
+        logout.click()
+
         span = self.browser.find_element(By.XPATH, '//span[text()="Daniel Juan Olavera"]')
         span.click()
 
