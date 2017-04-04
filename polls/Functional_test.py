@@ -200,3 +200,29 @@ class FunctionalTest(TestCase):
         # Ver los datos de detalle
         h2 = self.browser.find_element(By.XPATH, '//h2[text()="Daniel Juan Olavera"]')
         self.assertIn('Daniel Juan Olavera', h2.text)
+
+
+        # Paso 6: Prueba para crear un comentario
+        # presiona el link de uno de los trabajadores
+        # Va a los detalles
+        # Escribe el correo
+        # Escribe el comentario
+
+    def test_reg_comentario(self):
+        self.browser.get('http://localhost:8000')
+
+        #presiona el link del nombre
+        h2 = self.browser.find_element_by_id('trabLink')
+        h2.click()
+
+        #Escribe el correo
+        correo = self.browser.find_element_by_id('correo')
+        correo.send_keys('dj.Olavera@uniandes.edu.co')
+
+        # Escribe los comentarios
+        comentario = self.browser.find_element_by_id('comentario')
+        comentario.send_keys('Prueba de comentarios')
+
+        #Submit del comment
+        submitComment = self.browser.find_element_by_id('submitComment')
+        submitComment.click()
