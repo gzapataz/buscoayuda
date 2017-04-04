@@ -12,11 +12,11 @@ class FunctionalTest(TestCase):
 
     def setUp(self):
         # GZ_var
-        self.browser = webdriver.Chrome('/usr/local/bin/chromedriver')
+        #self.browser = webdriver.Chrome('/usr/local/bin/chromedriver')
         #self.browser = webdriver.Safari()
 
         # FB_var
-        #self.browser = webdriver.Chrome()
+        self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(2)
 
     def tearDown(self):
@@ -56,9 +56,9 @@ class FunctionalTest(TestCase):
 
         imagen = self.browser.find_element_by_id('id_imagen')
         # GZ_var
-        imagen.send_keys('/Users/Gabriel/Downloads/Untitled.png')
+        # imagen.send_keys('/Users/Gabriel/Downloads/Untitled.png')
         # FB_var
-        #imagen.send_keys('C:\\Temporal\\perfil\\foto.jgp')
+        imagen.send_keys('C:\\Temporal\\perfil\\foto.jgp')
 
         nombreUsuario = self.browser.find_element_by_id('id_username')
         nombreUsuario.send_keys('juan645')
